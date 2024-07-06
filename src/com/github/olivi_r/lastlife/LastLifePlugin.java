@@ -55,23 +55,33 @@ public class LastLifePlugin extends JavaPlugin {
 		// remove existing teams
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard board = manager.getMainScoreboard();
-		for (Team t : board.getTeams()) {
-			t.unregister();
-		}
 		
 		// create teams
-		darkGreenTeam = board.registerNewTeam("darkGreen");
-		greenTeam = board.registerNewTeam("green");
-		yellowTeam = board.registerNewTeam("yellow");
-		redTeam = board.registerNewTeam("red");
-		blackTeam = board.registerNewTeam("black");
-		
-		// set team colours
-		darkGreenTeam.setColor(ChatColor.DARK_GREEN);
-		greenTeam.setColor(ChatColor.GREEN);
-		yellowTeam.setColor(ChatColor.YELLOW);
-		redTeam.setColor(ChatColor.RED);
-		blackTeam.setColor(ChatColor.BLACK);
+		darkGreenTeam = board.getTeam("darkGreen");
+		greenTeam = board.getTeam("green");
+		yellowTeam = board.getTeam("yellow");
+		redTeam = board.getTeam("red");
+		blackTeam = board.getTeam("black");
+		if (darkGreenTeam == null) {
+			darkGreenTeam = board.registerNewTeam("darkGreen");
+			darkGreenTeam.setColor(ChatColor.DARK_GREEN);
+		}
+		if (greenTeam == null) {
+			greenTeam = board.registerNewTeam("green");
+			greenTeam.setColor(ChatColor.GREEN);
+		}
+		if (yellowTeam == null) {
+			yellowTeam = board.registerNewTeam("yellow");
+			yellowTeam.setColor(ChatColor.YELLOW);
+		}
+		if (redTeam == null) {
+			redTeam = board.registerNewTeam("red");
+			redTeam.setColor(ChatColor.RED);
+		}
+		if (blackTeam == null) {
+			blackTeam = board.registerNewTeam("black");
+			blackTeam.setColor(ChatColor.BLACK);
+		}
 		
 		// register command executors and tab completers
 		getCommand("add").setExecutor(new AddExecutor(this));
