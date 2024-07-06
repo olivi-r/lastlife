@@ -1,0 +1,28 @@
+name: LastLife
+main: com.github.olivi_r.lastlife.LastLifePlugin
+version: 1.0
+api-version: 1.21
+author: olivi-r
+commands:
+  add:
+    description: Add new player to the game
+    usage: /<command> <player>
+    permission: op
+  givelife:
+    description: Give someone one of your lives
+    usage: /<command> <player>
+  lives:
+    description: See how many lives you have left
+    usage: /<command>
+  reset:
+    description: Reset all lives
+    usage: /<command>
+    permission: op
+  setlives:
+    description: Set lives for player
+    usage: /<command> <player> <lives>
+    permission: op
+  start:
+    description: Setup lives
+    usage: /<command>
+    permission: op
