@@ -1,0 +1,1 @@
+This is a recreation of the plugin used in the Last Life minecraft series.
