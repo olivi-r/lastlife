@@ -1,18 +1,9 @@
 package com.github.olivi_r.lastlife;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-//import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
-//import org.bukkit.inventory.ShapedRecipe;
-//import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -96,45 +87,5 @@ public class LastLifePlugin extends JavaPlugin {
 		getCommand("setlives").setTabCompleter(new SetLivesTabCompleter());
 		getCommand("start").setExecutor(new StartExecutor(this));
 		getCommand("start").setTabCompleter(new NoArgsTabCompleter());
-		
-		// remove recipes
-		List<Material> removed = new ArrayList<>();
-		removed.add(Material.BOOKSHELF);
-		removed.add(Material.ENCHANTING_TABLE);
-		
-		Iterator<Recipe> recipes = getServer().recipeIterator();
-		Recipe recipe;
-		while (recipes.hasNext()) {
-			recipe = recipes.next();
-			if (recipe != null && removed.contains(recipe.getResult().getType())) {
-				recipes.remove();
-			}
-		}
-//		
-//		// tnt
-//		ItemStack tntStack = new ItemStack(Material.TNT);
-//		NamespacedKey tntKey = new NamespacedKey(this, "tnt");
-//		ShapedRecipe tntRecipe = new ShapedRecipe(tntKey, tntStack);
-//		tntRecipe.shape("ABA", "BCB", "ABA");
-//		tntRecipe.setIngredient('A', Material.PAPER);
-//		tntRecipe.setIngredient('B', Material.SAND);
-//		tntRecipe.setIngredient('C', Material.GUNPOWDER);
-//		Bukkit.addRecipe(tntRecipe);
-//		
-//		// name tag
-//		ItemStack nametagStack = new ItemStack(Material.NAME_TAG);
-//		NamespacedKey nametagKey = new NamespacedKey(this, "nametag");
-//		ShapelessRecipe nametagRecipe = new ShapelessRecipe(nametagKey, nametagStack);
-//		nametagRecipe.addIngredient(Material.PAPER);
-//		nametagRecipe.addIngredient(Material.STRING);
-//		Bukkit.addRecipe(nametagRecipe);
-//		
-//		// moss
-//		ItemStack mossStack = new ItemStack(Material.MOSS_BLOCK);
-//		NamespacedKey mossKey = new NamespacedKey(this, "moss");
-//		ShapelessRecipe mossRecipe = new ShapelessRecipe(mossKey, mossStack);
-//		mossRecipe.addIngredient(Material.BONE_MEAL);
-//		mossRecipe.addIngredient(Material.WHEAT_SEEDS);
-//		Bukkit.addRecipe(mossRecipe);
 	}
 }
