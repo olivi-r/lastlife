@@ -31,7 +31,7 @@ public class BoogeymanExecutor implements CommandExecutor {
 
 		plugin.boogeymen.clear();
 
-		if (available.size() > 0) {
+		if (available.size() > 1) {
 			int boogey0 = ThreadLocalRandom.current().nextInt(available.size());
 			plugin.boogeymen.add(available.get(boogey0));
 			available.get(boogey0).sendTitle(ChatColor.RED + "Boogeyman!", "Kill 1 Non-Red Player", 1, 40, 10);
