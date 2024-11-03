@@ -11,11 +11,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class AddExecutor implements CommandExecutor {
 	private LastLifePlugin plugin;
-	
+
 	public AddExecutor(LastLifePlugin plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length == 1) {

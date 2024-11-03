@@ -1,5 +1,7 @@
 package com.github.olivi_r.lastlife;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -13,11 +15,12 @@ import org.bukkit.scoreboard.Team;
 public class LastLifePlugin extends JavaPlugin {
 	Team darkGreenTeam, greenTeam, yellowTeam, redTeam, blackTeam;
 	NamespacedKey livesKey;
-	
+	ArrayList<Player> boogeymen;
+
 	public void refreshTeams() {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			Integer lives = p.getPersistentDataContainer().get(livesKey, PersistentDataType.INTEGER);
-			
+
 			if (lives == null) {
 				for (Team t : Bukkit.getScoreboardManager().getMainScoreboard().getTeams()) {
 					if (t.hasEntry(p.getName())) {
@@ -37,16 +40,17 @@ public class LastLifePlugin extends JavaPlugin {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onEnable() {
 		livesKey = new NamespacedKey(this, "lives");
+		boogeymen = new ArrayList<Player>();
 		getServer().getPluginManager().registerEvents(new DeathEvent(this), this);
-		
+
 		// remove existing teams
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
 		Scoreboard board = manager.getMainScoreboard();
-		
+
 		// create teams
 		darkGreenTeam = board.getTeam("darkGreen");
 		greenTeam = board.getTeam("green");
@@ -73,10 +77,14 @@ public class LastLifePlugin extends JavaPlugin {
 			blackTeam = board.registerNewTeam("black");
 			blackTeam.setColor(ChatColor.BLACK);
 		}
-		
+
 		// register command executors and tab completers
 		getCommand("add").setExecutor(new AddExecutor(this));
 		getCommand("add").setTabCompleter(new AddTabCompleter());
+		getCommand("boogeyman").setExecutor(new BoogeymanExecutor(this));
+		getCommand("boogeyman").setTabCompleter(new NoArgsTabCompleter());
+		getCommand("boogeyman-end").setExecutor(new BoogeymanEndExecutor(this));
+		getCommand("boogeyman-end").setTabCompleter(new NoArgsTabCompleter());
 		getCommand("givelife").setExecutor(new GiveLifeExecutor(this));
 		getCommand("givelife").setTabCompleter(new GiveLifeTabCompleter());
 		getCommand("lives").setExecutor(new LivesExecutor(this));

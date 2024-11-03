@@ -33,7 +33,9 @@ public class StartExecutor implements CommandExecutor {
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					Bukkit.getOnlinePlayers().forEach(p -> {p.sendTitle(ChatColor.GRAY + "You will have...", "", 20, 40, 0);});
+					Bukkit.getOnlinePlayers().forEach(p -> {
+						p.sendTitle(ChatColor.GRAY + "You will have...", "", 20, 40, 0);
+					});
 					Thread.sleep(3000);
 					for (int i = 0; i < 30; i++) {
 						String roll = colorize(ThreadLocalRandom.current().nextInt(2, 7));
@@ -73,12 +75,11 @@ public class StartExecutor implements CommandExecutor {
 								int lives = ThreadLocalRandom.current().nextInt(2, 7);
 								String roll = colorize(lives);
 								p.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 10, 1);
-								p.sendTitle(roll,  "", 1, 20, 1);
+								p.sendTitle(roll, "", 1, 20, 1);
 								Thread.sleep(1000);
 								p.playSound(p.getLocation(), Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 10, 1);
-								p.sendTitle(roll + ChatColor.GREEN + " lives.",  "", 1, 20, 10);
+								p.sendTitle(roll + ChatColor.GREEN + " lives.", "", 1, 20, 10);
 								p.getPersistentDataContainer().set(plugin.livesKey, PersistentDataType.INTEGER, lives);
-								plugin.refreshTeams();
 							} catch (InterruptedException e) {
 								Thread.currentThread().interrupt();
 							}
@@ -87,7 +88,8 @@ public class StartExecutor implements CommandExecutor {
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-			}}).start();
+			}
+		}).start();
 		return true;
 	}
 }

@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 
 public class ResetExecutor implements CommandExecutor {
 	private LastLifePlugin plugin;
-	
+
 	public ResetExecutor(LastLifePlugin plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		for (Player p : Bukkit.getOnlinePlayers()) {

@@ -1,12 +1,20 @@
 name: LastLife
 main: com.github.olivi_r.lastlife.LastLifePlugin
-version: 1.0
+version: 1.1
 api-version: 1.21
 author: olivi-r
 commands:
   add:
     description: Add new player to the game
     usage: /<command> <player>
+    permission: op
+  boogeyman:
+    description: Choose the boogeyman
+    usage: /<command>
+    permission: op
+  boogeyman-end:
+    description: End boogeyman phase
+    usage: /<command>
     permission: op
   givelife:
     description: Give someone one of your lives

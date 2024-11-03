@@ -9,11 +9,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class SetLivesExecutor implements CommandExecutor {
 	private LastLifePlugin plugin;
-	
+
 	public SetLivesExecutor(LastLifePlugin plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length == 2) {

@@ -1,6 +1,5 @@
 package com.github.olivi_r.lastlife;
 
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,18 +8,17 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class LivesExecutor implements CommandExecutor {
 	private LastLifePlugin plugin;
-	
+
 	public LivesExecutor(LastLifePlugin plugin) {
 		this.plugin = plugin;
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
-			NamespacedKey key = new NamespacedKey(plugin, "lives");
-			Integer lives = p.getPersistentDataContainer().get(key, PersistentDataType.INTEGER);
-			
+			Integer lives = p.getPersistentDataContainer().get(plugin.livesKey, PersistentDataType.INTEGER);
+
 			if (lives == null) {
 				p.sendMessage("No lives set.");
 			} else if (lives == 1) {
